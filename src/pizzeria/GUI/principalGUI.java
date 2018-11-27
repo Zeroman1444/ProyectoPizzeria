@@ -92,7 +92,9 @@ public class principalGUI extends javax.swing.JFrame {
         //jTabbedPane1.addTab("Venta", jPanel1);
         //jTabbedPane1.addTab("One", icon, jTabbedPane1, "Tab 1");
         //jTabbedPane1.setSelectedIndex(0);
-        jTabbedPane1.addTab("Pass", tab1Icon, jPanel1);
+        jTabbedPane1.addTab("pass",UIManager.getIcon("OptionPane.informationIcon"), jPanel1);
+
+        //tab1Icon
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

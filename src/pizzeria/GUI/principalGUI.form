@@ -45,7 +45,7 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanel1">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="*/&#xa;//jTabbedPane1.addTab(&quot;Venta&quot;, jPanel1);&#xa;//jTabbedPane1.addTab(&quot;One&quot;, icon, jTabbedPane1, &quot;Tab 1&quot;);&#xa;//jTabbedPane1.setSelectedIndex(0);&#xa;jTabbedPane1.addTab(&quot;Pass&quot;, tab1Icon, jPanel1);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="*/&#xa;//jTabbedPane1.addTab(&quot;Venta&quot;, jPanel1);&#xa;//jTabbedPane1.addTab(&quot;One&quot;, icon, jTabbedPane1, &quot;Tab 1&quot;);&#xa;//jTabbedPane1.setSelectedIndex(0);&#xa;jTabbedPane1.addTab(&quot;pass&quot;,UIManager.getIcon(&quot;OptionPane.informationIcon&quot;), jPanel1);&#xa;&#xa;//tab1Icon"/>
             <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="/*"/>
           </AuxValues>
           <Constraints>
