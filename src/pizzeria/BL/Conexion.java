@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author Guzman
  */
 public class Conexion {
-    String CadenaConexion = "jdbc:sqlite:C:\\Users\\joser\\OneDrive\\UTM\\Ingenieria\\7mo Cuatrimestre\\Programación de Aplicaciones\\3er Parcial\\EjerciciosyPracticas\\Pizzeria\\src\\pizzeria\\BL\\Pizzeria.db";
+    String CadenaConexion = "jdbc:sqlite:src\\pizzeria\\BL\\Pizzeria.db";
     Connection conn= null;
     public Conexion(){ }
     public Connection Conectar(){ try {Class.forName("org.sqlite.JDBC"); 
