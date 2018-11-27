@@ -207,6 +207,7 @@ public class logGUI extends javax.swing.JFrame {
                 new logGUI().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
