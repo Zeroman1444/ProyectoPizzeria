@@ -41,6 +41,26 @@ public class loginDAL {
 } 
     return aprobado;
 }
+    
+    public int obtenerPermiso(String usuario, String pass)
+    {
+    int permiso = 0;
+    ResultSet ComandoEjecutado=objConexion.EjecutarSentenciaSQL("SELECT IDTipoEmpleado FROM Empleados WHERE Usuario ="+usuario+"AND Contraseña ="+pass); 
+    objConexion.Desconectar(); 
+     try{ 
+    while (ComandoEjecutado.next()) {
+    int credencial = Integer.parseInt(ComandoEjecutado.getString("IDTipoEmpleado"));
+    
+    permiso = credencial;
+   // System.out.println(firstName);
+    }
+    }
+    catch(SQLException e){
+ //return null; 
+} 
+    return permiso;
+    
+    }
 }
 
 

@@ -13,6 +13,7 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import pizzeria.GUI.logGUI;
 
 /**
  *
@@ -20,6 +21,7 @@ import javax.swing.JPanel;
  */
 public class principalGUI extends javax.swing.JFrame {
 
+    int PERMISOS = logGUI.PERMISOS;
     /**
      * Creates new form principalGUI
      */
@@ -49,8 +51,10 @@ public class principalGUI extends javax.swing.JFrame {
     return jplPanel;
   }
     
-    ImageIcon tab1Icon = new ImageIcon(
-            this.getClass().getResource("login.png"));
+    ImageIcon tab1Icon = new ImageIcon(this.getClass().getResource("pizzalogo.png"));
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -92,7 +96,7 @@ public class principalGUI extends javax.swing.JFrame {
         //jTabbedPane1.addTab("Venta", jPanel1);
         //jTabbedPane1.addTab("One", icon, jTabbedPane1, "Tab 1");
         //jTabbedPane1.setSelectedIndex(0);
-        jTabbedPane1.addTab("pass",UIManager.getIcon("OptionPane.informationIcon"), jPanel1);
+        jTabbedPane1.addTab("Venta   ",tab1Icon, jPanel1);
 
         //tab1Icon
 

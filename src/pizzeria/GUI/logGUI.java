@@ -5,6 +5,7 @@
  */
 package pizzeria.GUI;
 
+import alertas.principal.WarningAlertCerrar;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.StringJoiner;
@@ -21,6 +22,7 @@ public class logGUI extends javax.swing.JFrame {
 
     
     loginDAL objloginDAL = new loginDAL();
+    public static int PERMISOS = 0;
     /**
      * Creates new form logGUI
      */
@@ -30,16 +32,53 @@ public class logGUI extends javax.swing.JFrame {
         cargarusuariofondo();
         cargarpassfondo();
         
+        
        
     }
     
     public int LogIn()
     {
-     StringJoiner joiner = new StringJoiner("','", "'", "'");
+     //StringJoiner joiner = new StringJoiner("','", "'", "'");
      String usuario = '\''+ txtusuario.getText() + '\'';
      String pass = '\''+ txtpass.getText() + '\'';
      int aprobado = objloginDAL.LogIn(usuario, pass);
+     PERMISOS = obtenerPermiso(usuario,pass);
      return aprobado;
+    }
+    
+    public int obtenerPermiso(String usuario, String pass)
+    {
+     //StringJoiner joiner = new StringJoiner("','", "'", "'");
+     //String usuario = '\''+ txtusuario.getText() + '\'';
+     //String pass = '\''+ txtpass.getText() + '\'';
+        
+    int permiso = objloginDAL.obtenerPermiso(usuario, pass);
+    
+    int credencial = TipoEmpleado(permiso);
+    
+    return credencial;
+    
+    }
+    
+     public int TipoEmpleado(int permiso) {
+    // Notice that the following is final, but not static, and is not given a value upfront.
+    int admin = 1;
+    int emp = 2;
+    int tipoEmpleado  = 0;
+    
+    if(permiso == admin)
+    {
+    tipoEmpleado = admin;
+    }
+    else if (permiso == emp)
+    {
+    tipoEmpleado = emp;
+    }
+    
+    
+    
+    return tipoEmpleado;
+    
     }
      
     
@@ -64,7 +103,13 @@ public class logGUI extends javax.swing.JFrame {
         Image img2 = img1.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon Logo = new ImageIcon(img2);
        jLabel2.setIcon(Logo);
+       
     }
+    
+    
+    
+   
+    
     
     public void cargarpassfondo(){
     //String img = ("loginfondo.jpeg");
@@ -87,11 +132,11 @@ public class logGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         materialButtonCircle1 = new principal.MaterialButtonCircle();
-        txtpass = new principal.MaterialTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtusuario = new principal.MaterialTextField();
-        jLabel2 = new javax.swing.JLabel();
         btnlogin = new principal.MaterialButtonCircle();
+        txtusuario = new app.bolivia.swing.JCTextField();
+        txtpass = new jpass.JRPasswordField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         materialButtonCircle1.setText("materialButtonCircle1");
@@ -103,34 +148,6 @@ public class logGUI extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        txtpass.setText("s");
-        txtpass.setToolTipText("");
-        txtpass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpassActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtpass);
-        txtpass.setBounds(230, 240, 230, 20);
-
-        jLabel3.setText("CON");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(180, 220, 290, 50);
-
-        txtusuario.setText("s");
-        txtusuario.setToolTipText("");
-        txtusuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtusuarioActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtusuario);
-        txtusuario.setBounds(230, 170, 230, 20);
-
-        jLabel2.setText("US");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(180, 150, 290, 50);
-
         btnlogin.setBackground(new java.awt.Color(204, 0, 0));
         btnlogin.setText("Ingresar");
         btnlogin.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +158,22 @@ public class logGUI extends javax.swing.JFrame {
         getContentPane().add(btnlogin);
         btnlogin.setBounds(220, 310, 230, 50);
 
+        txtusuario.setPlaceholder("Ingrese su Usuario");
+        getContentPane().add(txtusuario);
+        txtusuario.setBounds(230, 162, 230, 30);
+
+        txtpass.setPlaceholder("Ingrese su Contraseña");
+        getContentPane().add(txtpass);
+        txtpass.setBounds(230, 232, 230, 30);
+
+        jLabel3.setText("CON");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(180, 220, 290, 50);
+
+        jLabel2.setText("US");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(180, 150, 290, 50);
+
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
@@ -149,14 +182,6 @@ public class logGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpassActionPerformed
-
-    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtusuarioActionPerformed
-
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         // TODO add your handling code here:
        //System.out.println(LogIn());
@@ -164,13 +189,25 @@ public class logGUI extends javax.swing.JFrame {
        int aprobado = (LogIn());
        if (aprobado == 1)
        {
+           
+           
+     //StringJoiner joiner = new StringJoiner("','", "'", "'");
+     //String usuario = '\''+ txtusuario.getText() + '\'';
+     //String pass = '\''+ txtpass.getText() + '\'';
+     //int PERMISOS = objloginDAL.obtenerPermiso(usuario, pass);
        principalGUI mprincipal = new principalGUI();
         mprincipal.setVisible(rootPaneCheckingEnabled);
         this.setVisible(false);
        }
        else if (aprobado == 0)
        {
-       JOptionPane.showMessageDialog(null,"El usuario o Contraseña ingresados no son correctos, verifique y vuelva a intentarlo", "Acceso Denegado",JOptionPane.INFORMATION_MESSAGE);
+        WarningAlertCerrar wa = new WarningAlertCerrar(this, true);
+        wa.titulo.setText("Usuario o Contraseña erroneos");
+        wa.msj.setText("Verifique y vuelva a intentar");
+        wa.msj1.setText("");
+        wa.setVisible(true);    
+           
+       //JOptionPane.showMessageDialog(null,"El usuario o Contraseña ingresados no son correctos, verifique y vuelva a intentarlo", "Acceso Denegado",JOptionPane.INFORMATION_MESSAGE);
        }
     }//GEN-LAST:event_btnloginActionPerformed
 
@@ -216,7 +253,7 @@ public class logGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private principal.MaterialButtonCircle materialButtonCircle1;
-    private principal.MaterialTextField txtpass;
-    private principal.MaterialTextField txtusuario;
+    private jpass.JRPasswordField txtpass;
+    private app.bolivia.swing.JCTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }
